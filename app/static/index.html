@@ -1,0 +1,67 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>restful json api boilerplate</title>
+  <meta name="description" content="very basic crud api to a postgres backed json documentstore">
+  <meta name="author" content="joppich">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+  <div class="wrapper" id="wrapper">
+    <header>
+      <div class="jumbotron">
+        <h2>Simple Restful JSON Api</h2>
+        <p>This is a very lightweight flask application, providing<br>
+        CRUD endpoints to a json documentstore based on postgresql.</p>
+        <p>Start the application for production by running:<br>
+          <span style='margin: 1px; color: #FFF; background-color: #000'>
+            $ gunicorn --bind 0.0.0.0:5000 run:app
+          </span></p>
+        <p>For debugging and populating the documentstore with sample data run <br>
+          <span style='margin: 1px; color: #FFF; background-color: #000'>
+            $ python3 ./run.py
+          </span></p>
+      </div>
+    </header>
+    <section class='content'>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <h3>Available Endpoints</h3>
+            <ul class='list-group'>
+              <li class='list-group-item'><span class='badge badge-success'>GET</span>&nbsp;<strong>/documents/id</strong></li>
+              <li class='list-group-item'><span class='badge badge-success'>GET</span>&nbsp;<strong>/documents</strong></li>
+              <li class='list-group-item'><span class='badge badge-warning'>POST</span>&nbsp;<strong>/documents/create</strong>&nbsp;</li>
+              <li class='list-group-item'><span class='badge badge-warning'>POST</span>&nbsp;<strong>/documents/update/id</strong>&nbsp;</li>
+              <li class='list-group-item'><span class='badge badge-danger'>GET</span>&nbsp;<strong>/documents/delete/id</strong>&nbsp;</li>
+            </ul>
+            <div style='margin: 10px' class='alert alert-info'>
+              <h4>Note:</h4>
+              <p>The <strong>id</strong> is always an integer<br>
+              The <strong>create</strong> and <strong>update</strong> endpoints expect the following format: </p>
+              <p style='margin: 1px; color: #FFF; background-color: #000'>
+                {<br>'data':<br>{<br>&nbsp;'attributes':{<br>&nbsp;&nbsp;'doc':{ YOUR : DATA }<br>&nbsp;},<br>&nbsp;'type':'documents'<br>}
+              </p><br>
+              <h4>Example with curl:</h4>
+                <p style='margin: 1px; color: #FFF; background-color: #000'>
+                  $ curl -H "Content-Type: application/json" -X POST -d '{"data":{"attributes":{"doc":{"jobname":"foo","status":"open"}}, "type":"documents"}}' http://example.com/documents/create
+                </p>
+            </div>
+      </div>
+    </section>
+  </div>
+
+
+
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+</body>
+</html>
