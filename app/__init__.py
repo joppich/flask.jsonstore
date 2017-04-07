@@ -1,5 +1,6 @@
 import os
 from flask import Flask, json
+from sqlalchemy_utils import database_exists
 
 def insert_sample_data():
     import requests
@@ -20,9 +21,10 @@ def create_app():
     from app.models import db
     db.init_app(app)
     with app.app_context():
-        db.drop_all()
-        db.create_all()
-
+        try:
+            db.create_all()
+        except:
+            pass
 
     from .api import bp as api_blueprint
     app.register_blueprint(api_blueprint)
