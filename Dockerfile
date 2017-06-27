@@ -11,6 +11,9 @@ WORKDIR /opt/flask
 RUN virtualenv -p /usr/bin/python3 venv
 RUN . venv/bin/activate && pip install -r requirements.txt
 
+ENV PG_ADDR=db
+ENV PG_PORT=5432
+
 EXPOSE 5000
 
 CMD ["sh","/opt/flask/docker_run.sh"]
