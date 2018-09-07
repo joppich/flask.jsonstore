@@ -5,7 +5,7 @@ from sqlalchemy_utils import database_exists
 def insert_sample_data():
     import requests
     from app.models import Document
-    url = 'https://api.github.com/users/MaibornWolff/repos'
+    url = 'https://api.github.com/users/moby/repos'
     sample_data = json.loads(requests.get(url).content.decode('utf-8'))
     for x in sample_data:
         d = Document(doc=x)
